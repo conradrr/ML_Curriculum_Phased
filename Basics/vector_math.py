@@ -1,13 +1,18 @@
 class CustomVector:
     def __init__(self, coordinates, name=""):
+        # Only accept 2d, 3d, or 4d vectors
         if (len(coordinates) > 4 or len(coordinates) < 2):
             raise Exception("Only 2d, 3d, or 4d vectors are accepted.")
         self.coordinates = coordinates
         self.name = name
 
+    # Function for visual convenience
     def printCoordinates(self):
         print(self.name, ": ", self.coordinates)
 
+    # Add vectors based on length:
+    # - IF this vector is smaller THEN append (if needed) and sum the coordinates in sequence
+    # - OTHERWISE we can add based off of the incoming vector's length since it is tossed anyway
     def addVector(self, vector):
         print("Adding vectors: ", self.coordinates, " + ", vector.coordinates)
         c1Length = len(self.coordinates)
@@ -20,7 +25,9 @@ class CustomVector:
         else:
             for i in range(0, c2Length):
                 self.coordinates[i]=self.coordinates[i]+vector.coordinates[i]
-        
+    
+    # Scale vectors
+    # Simply multiply each element of this vector by the scalar
     def scaleVector(self, scalar):
         print("Scaling vector by ", scalar)
         for i in range(0, len(self.coordinates)):
